@@ -16,6 +16,9 @@ class DropdownDatePicker extends StatefulWidget {
   ///InputDecoration for DropDown
   final InputDecoration? inputDecoration;
 
+  ///Focus color for DropDown
+  final Color? dropDownFocusColor;
+
   ///DropDown expand icon
   final Icon? icon;
 
@@ -84,6 +87,8 @@ class DropdownDatePicker extends StatefulWidget {
   ///Default [isDropdownHideUnderline] = false. Wrap with DropdownHideUnderline for the dropdown to hide the underline.
   final bool isDropdownHideUnderline;
 
+  final CrossAxisAlignment rowCrossAxisAlignment;
+
   /// locale
   ///
   /// default `en`
@@ -113,6 +118,7 @@ class DropdownDatePicker extends StatefulWidget {
       this.textStyle,
       this.boxDecoration,
       this.inputDecoration,
+      this.dropDownFocusColor = Colors.transparent,
       this.icon,
       this.startYear,
       this.endYear,
@@ -121,6 +127,7 @@ class DropdownDatePicker extends StatefulWidget {
       this.onChangedMonth,
       this.onChangedYear,
       this.isDropdownHideUnderline = false,
+      this.rowCrossAxisAlignment = CrossAxisAlignment.start,
       this.errorDay = 'Please select day',
       this.errorMonth = 'Please select month',
       this.errorYear = 'Please select year',
@@ -140,7 +147,7 @@ class DropdownDatePicker extends StatefulWidget {
       this.monthFlex = 2,
       this.dayFlex = 1,
       this.yearFlex = 2})
-      : assert(["en", "zh_CN", "it_IT", "tr",'fr_FR'].contains(locale)),
+      : assert(["en", "zh_CN", "it_IT", "tr", 'fr_FR'].contains(locale)),
         super(key: key);
 
   @override
@@ -323,6 +330,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: widget.rowCrossAxisAlignment,
       children: [
         if (widget.showMonth)
           Expanded(
@@ -386,6 +394,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
   ///month dropdown
   DropdownButtonFormField<String> monthDropdown() {
     return DropdownButtonFormField<String>(
+        focusColor: widget.dropDownFocusColor,
         decoration: widget.inputDecoration ??
             (widget.isDropdownHideUnderline ? removeUnderline() : null),
         isExpanded: widget.isExpanded,
@@ -427,6 +436,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
   ///year dropdown
   DropdownButtonFormField<String> yearDropdown() {
     return DropdownButtonFormField<String>(
+        focusColor: widget.dropDownFocusColor,
         decoration: widget.inputDecoration ??
             (widget.isDropdownHideUnderline ? removeUnderline() : null),
         hint: Text(widget.hintYear, style: widget.hintTextStyle),
@@ -461,6 +471,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
   ///day dropdown
   DropdownButtonFormField<String> dayDropdown() {
     return DropdownButtonFormField<String>(
+        focusColor: widget.dropDownFocusColor,
         decoration: widget.inputDecoration ??
             (widget.isDropdownHideUnderline ? removeUnderline() : null),
         hint: Text(widget.hintDay, style: widget.hintTextStyle),
