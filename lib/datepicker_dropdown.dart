@@ -398,7 +398,9 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
         decoration: widget.inputDecoration ??
             (widget.isDropdownHideUnderline ? removeUnderline() : null),
         isExpanded: widget.isExpanded,
-        hint: Text(widget.hintMonth, style: widget.hintTextStyle),
+        hint: FittedBox(
+          child: Text(widget.hintMonth, style: widget.hintTextStyle),
+        ),
         icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
         value: monthselVal == '' ? null : monthselVal,
         onChanged: (value) {
@@ -414,13 +416,16 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
         items: listMonths.map((item) {
           return DropdownMenuItem<String>(
             value: item["id"].toString(),
-            child: Text(
-              item["value"].toString(),
-              style: widget.textStyle ??
-                  const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black),
+            child: FittedBox(
+              child: Text(
+                // note: FittedBox forces text to be in single line (1)
+                item["value"].toString(),
+                style: widget.textStyle ??
+                    const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black, height: 1),
+              ),
             ),
           );
         }).toList());
@@ -439,7 +444,9 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
         focusColor: widget.dropDownFocusColor,
         decoration: widget.inputDecoration ??
             (widget.isDropdownHideUnderline ? removeUnderline() : null),
-        hint: Text(widget.hintYear, style: widget.hintTextStyle),
+        hint: FittedBox(
+          child: Text(widget.hintYear, style: widget.hintTextStyle),
+        ),
         isExpanded: widget.isExpanded,
         icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
         value: yearselVal == '' ? null : yearselVal,
@@ -456,13 +463,16 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
         items: listyears.map((item) {
           return DropdownMenuItem<String>(
             value: item.toString(),
-            child: Text(
-              item.toString(),
-              style: widget.textStyle ??
-                  const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black),
+            // note: FittedBox forces text to be in single line (1)
+            child: FittedBox(
+              child: Text(
+                item.toString(),
+                style: widget.textStyle ??
+                    const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black, height: 1),
+              ),
             ),
           );
         }).toList());
@@ -474,7 +484,9 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
         focusColor: widget.dropDownFocusColor,
         decoration: widget.inputDecoration ??
             (widget.isDropdownHideUnderline ? removeUnderline() : null),
-        hint: Text(widget.hintDay, style: widget.hintTextStyle),
+        hint: FittedBox(
+          child: Text(widget.hintDay, style: widget.hintTextStyle),
+        ),
         isExpanded: widget.isExpanded,
         icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
         value: dayselVal == '' ? null : dayselVal,
@@ -491,12 +503,16 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
         items: listdates.map((item) {
           return DropdownMenuItem<String>(
             value: item.toString(),
-            child: Text(item.toString(),
+            // note: FittedBox forces text to be in single line (1)
+            child: FittedBox(
+              child: Text(item.toString(),
                 style: widget.textStyle ??
                     const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: Colors.black)),
+                        color: Colors.black, height: 1),
+              ),
+            ),
           );
         }).toList());
   }
