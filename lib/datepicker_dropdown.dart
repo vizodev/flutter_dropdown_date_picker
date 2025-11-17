@@ -454,6 +454,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
 
   Widget mainRow({int day = 2, int month = 1, int year = 3}) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (day == 1) dayWidget(),
         if (day == 1) w(widget.width),
@@ -562,7 +563,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
       isExpanded: widget.isExpanded,
       hint: Text(widget.hintMonth, style: widget.hintTextStyle),
       icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
-      initialValue: monthselVal.isEmpty ? null : monthselVal,
+      value: monthselVal.isEmpty ? null : monthselVal,
       menuMaxHeight: widget.menuHeight,
       onChanged: (value) {
         monthSelected(value);
@@ -604,7 +605,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
       hint: Text(widget.hintYear, style: widget.hintTextStyle),
       isExpanded: widget.isExpanded,
       icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
-      initialValue: yearselVal.isEmpty ? null : yearselVal,
+      value: yearselVal.isEmpty ? null : yearselVal,
       menuMaxHeight: widget.menuHeight,
       onChanged: (value) {
         yearsSelected(value);
@@ -638,7 +639,7 @@ class _DropdownDatePickerState extends State<DropdownDatePicker> {
       hint: Text(widget.hintDay, style: widget.hintTextStyle),
       isExpanded: widget.isExpanded,
       icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
-      initialValue: dayselVal.isEmpty ? null : dayselVal,
+      value: dayselVal.isEmpty ? null : dayselVal,
       menuMaxHeight: widget.menuHeight,
       onChanged: (value) {
         daysSelected(value);
